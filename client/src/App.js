@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { Field, reduxForm } from "redux-form";
 import {
   Container,
@@ -15,58 +15,40 @@ import {
   Segment,
   Grid,
   GridRow,
-  GridColumn
+  GridColumn,
+  Label
 } from "semantic-ui-react";
 
-const App = formProps => {
-  const { handleSubmit, reset, pristine, submitting, value } = formProps;
-
-  handleChange(e){
-    e.preventDefault()
-    
-  }
+const App = () => {
+  const [textInput, handleChange] = useState("");
 
   return (
     <Fragment>
       <Container>
-        <Header>React / Redux Form / Semantic UI</Header>
-        <Form onSubmit={handleSubmit}>
+        <Segment>
+          <Header>Semantic UI Form Input</Header>
+        </Segment>
+        <Form>
           <Segment>
-            <Grid columns={2} celled="internally">
-              <Header>Text Input</Header>
-              <GridRow>
-                <GridColumn>
-                  <FormGroup>
-                    <Field
-                      component={FormInput}
-                      label="Text Input"
-                      placeholder="Text Input..."
-                      name="textInput1"
-                      value={value}
-                      onChange={e => onChange(e)}
-                    />
-                  </FormGroup>
-                </GridColumn>
-                <GridColumn>
-                  <div>{formProps.textInput1}</div>
-                </GridColumn>
-              </GridRow>
-            </Grid>
+            <Header>Text Input</Header>
+
+            <FormGroup>
+              <Field
+                label="Text Input"
+                placeholder="Text Input..."
+                name="textInput"
+                component="input"
+                onChange={e => handleChange(e.target.value)}
+                value={textInput}
+              />
+            </FormGroup>
+            <strong>Input Value: {textInput}</strong>
           </Segment>
         </Form>
       </Container>
     </Fragment>
   );
 };
-
-const mapStateToProps = (state) => ({
-  value: state.value
-})
-
-const mapDispatchToProps = {
-  
-}
-
 
 export default reduxForm({
   form: "simpleForm"
