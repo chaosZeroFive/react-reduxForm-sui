@@ -5,10 +5,6 @@ import { Container, Form, FormGroup, Header, Segment } from "semantic-ui-react";
 const App = () => {
   const [textInput, handleChange] = useState("");
 
-  const handleChange = e => {
-    return e.target.value;
-  };
-
   return (
     <Fragment>
       <Container>
@@ -24,7 +20,7 @@ const App = () => {
                 placeholder="Text Input..."
                 name="textInput"
                 component="input"
-                onChange={handleChange(value)}
+                onChange={e => handleChange(e.target.value)}
                 value={textInput}
               />
             </FormGroup>
