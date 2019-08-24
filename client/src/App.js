@@ -1,26 +1,13 @@
 import React, { Fragment, useState } from "react";
 import { Field, reduxForm } from "redux-form";
-import {
-  Container,
-  Form,
-  FormButton,
-  FormCheckbox,
-  FormDropdown,
-  FormGroup,
-  FormInput,
-  FormRadio,
-  FormSelect,
-  FormTextArea,
-  Header,
-  Segment,
-  Grid,
-  GridRow,
-  GridColumn,
-  Label
-} from "semantic-ui-react";
+import { Container, Form, FormGroup, Header, Segment } from "semantic-ui-react";
 
 const App = () => {
   const [textInput, handleChange] = useState("");
+
+  const handleChange = e => {
+    return e.target.value;
+  };
 
   return (
     <Fragment>
@@ -31,14 +18,13 @@ const App = () => {
         <Form>
           <Segment>
             <Header>Text Input</Header>
-
             <FormGroup>
               <Field
                 label="Text Input"
                 placeholder="Text Input..."
                 name="textInput"
                 component="input"
-                onChange={e => handleChange(e.target.value)}
+                onChange={handleChange(value)}
                 value={textInput}
               />
             </FormGroup>
